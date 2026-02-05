@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+
+.title {
+    text-align: center;
+    font-weight: 500;
+}
+
+.about-container {
+    text-align: center;
+}
+
+.navbar {
+    height: auto;
+    background: darkslateblue;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.navbar a {
+    font-size: 24px;
+    color: white;
+    font-weight: 500;
+    padding: 10px      ;
+}
+
+.navbar a:hover {
+    color: yellow;
+}
