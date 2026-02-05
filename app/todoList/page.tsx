@@ -12,7 +12,7 @@ type Todo = {
   created_at: string
 }
 
-export default function Index() {
+export default function TodoList() {
   const [todos, setTodos] = useState<Todo[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="navbar">
-          <a href="/index">홈</a>
+          <a href="/todoList">홈</a>
           <a href="/about">소개</a>
         </div>
         {children}
