@@ -8,7 +8,7 @@ export default function GoogleLoginButton() {
       provider: 'google',
       options: {
         // 로그인 후 돌아올 페이지 (선택)
-        redirectTo: `${window.location.origin}/index`,
+        redirectTo: `${window.location.origin}/todoList`,
         
         // 필요하면 쿼리 파라미터로 추가 정보 전달 가능
         // queryParams: { prompt: 'select_account' }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { supabase } from '@/utils/supabase'
+import Link from 'next/link';
 
 // todos 테이블의 데이터 구조에 맞게 타입 정의 (가장 중요!)
 type Todo = {
@@ -13,7 +14,7 @@ type Todo = {
 }
 
 export default function TodoList() {
-  const [todos, setTodos] = useState<Todo[]>([])
+    const [todos, setTodos] = useState<Todo[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -26,6 +27,8 @@ export default function TodoList() {
         const { data, error } = await supabase
           .from('todos')
           .select('*')
+
+        console.log(data);
 
         if (error) {
           throw error
@@ -54,8 +57,8 @@ export default function TodoList() {
       ) : (
         <ul>
           {todos.map((todo) => (
-            <li key={todo.id}>
-              {todo.title} {todo.is_complete ? 'o' : 'x'}
+            <li className='todo' key={todo.id}>
+              <Link href={`/todoList/${todo.id}`}>{todo.title} {todo.is_complete ? 'o' : 'x'}</Link>
             </li>
           ))}
         </ul>

@@ -7,25 +7,295 @@ body {
     font-weight: 500;
 }
 
+.todo {
+    cursor: pointer;
+    list-style: none;
+
+}
+
+.todoListAddbtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #339af0;
+    color: white;
+}
+
+.todoListAddbtn:hover {
+    background-color: #228be6;
+    color: yellow;
+}
+
+.todoList-write-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;          /* 가로 방향(좌우) 가운데 정렬 */
+    min-height: 60vh;            /* ← 이 부분이 핵심! */
+    gap: 1.5rem;                 /* 자식 요소들 사이 간격 */
+    padding: 2rem;
+}
+
+.todoList-write-title-input {
+    width: 100%;
+    max-width: 680px;
+    padding: 14px 16px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    border: 2px solid #d0d7e0;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.todoList-write-title-input:focus {
+    border-radius: #228be6;
+    background-color: #ffffff;
+}
+
+.todoList-write-content {
+    width: 100%;
+    max-width: 680px;
+    height: 500px;
+    padding: 14px 16px;
+    font-size: 1.0rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1f2937;
+    background-color: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    resize: none;
+    overflow: hidden;
+    outline: none;
+    transition: border-color 0.1s ease;
+
+    font-family: 
+        "Pretendard Variable", 
+        Pretendard, 
+        -apple-system, 
+        BlinkMacSystemFont, 
+        "Apple SD Gothic Neo", 
+        "Noto Sans KR", 
+        "Malgun Gothic", 
+        "맑은 고딕", 
+        sans-serif;
+}
+
+.todoList-write-content-input:focus {
+    border-color: #228be6;
+}
+
+.todoList-write-submit-btn {
+    width: 100%;
+    max-width: 710px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: larger;
+    background-color: #339af0;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 14px 16px;
+}
+
+.todoList-write-submit-btn:hover {
+    background-color: #228be6;
+}
+
 .about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    margin: 10vh auto;
+    gap: 20px;
+}
+
+.about-title {
+    font-size: 52px;
+    font-weight: bold;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.about-title-sub {
+    color: #808080;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
+.about-secondary {
+    color: #392f31;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.about-a-container {
+    
+}
+
+.about-a {
+    background-color: #ec5353;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: 1.5px solid #f29886;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.about-a:hover {
+    background-color: #ff6b6b;
+    transform: scale(1.05);
+    transition: all 0.25s ease;
+}
+
+.about-profile-flow-container {
+    margin-top: 8%;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 600px;
+    background-color: #f8fafc;
+    padding: 18px 0;
+    border-radius: 10px;
+}
+
+.about-profile-flow-content {
+    display: inline-block;
+    animation: scroll-left 20s linear infinite;
+}
+
+.about-profile-flow-content span {
+    margin-right: 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.about-profile-flow-bottom {
+    color: #808080;
+    font-weight: 500;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.about-cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;     /* 2열 */
+    gap: 24px;                          /* 카드 사이 간격 */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.about-card {
+    width: 25vh;
+    text-align: left;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+.about-card:hover {
+    border: 1px solid #ff6b6b;
+    transform: scale(1.05);
+    transition: all 0.25s ease;
+}
+
+.about-card:hover img {
+    filter: brightness(0) saturate(100%) invert(70%) sepia(85%) saturate(3663%) hue-rotate(321deg) brightness(110%) contrast(96%);
+}
+
+.about-card-top {
+    color: #808080;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+}
+
+.about-card-icon {
+    float: right;
+    margin-top: 10px;
+    transition: filter 0.2s ease;
+}
+
+.about-card-icon > span {
+    color: red;
+}
+
+.about-card-top-title {
+    font-weight: 500;
+    font-size: 24px;
+    color: black;
+    margin: 0;
+}
+
+.about-card-bottom {
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.flex-1 {
+  flex-grow: 1;   /* 또는 flex-grow: 1; */
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.root-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar {
-    height: auto;
-    background: darkslateblue;
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    height: 30px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e5e7eb;
+    gap: 32px;
+    position: fixed;
+    top: 0;
 }
 
-.navbar a {
-    font-size: 24px;
-    color: white;
+.navbar-item {
+    color: #333333;
     font-weight: 500;
-    padding: 10px      ;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 20px;
+    text-align: center;
 }
 
-.navbar a:hover {
-    color: yellow;
+.navbar-item:hover {
+    color: #228be6;
 }

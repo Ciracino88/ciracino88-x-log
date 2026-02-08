@@ -1,17 +1,108 @@
 export default function About() {
     return(
-        <div>
-            <h4 className="title">내 페이지를 소개합니다.</h4>
-            <div className="about-container">
-                <span>내적 공간</span>
-                <p>누군가에게 보이고 싶은 것들은 얼마든지 표출할 수 있습니다. 하지만 비밀스럽게 간직하고 싶으면서도, 고민을 털어놓고 싶은, 역설적인 것들이 있기도 하죠. x log 는 당신의 그러한 마음 속 응어리들을 조용히 간직합니다.</p>
-                <p>x log 는 기본적으로 게시물을 비공개로 유지합니다. 작성자만 볼 수 있고, 수정할 수 있는 상태를 유지하죠. 당신이 원하는 수준에 따라 게시물은 공개 범위를 점차 넓혀나갈 수 있습니다.</p>
-                <span>전체 공개</span>
-                <p>전체 공개는 가장 표준적인 게시물 공개 방식입니다. 모든 사용자가 당신의 게시물을 확인할 수 있습니다.</p>
-                <span>익명 공개</span>
-                <p>익명 공개 역시 익숙한 게시물 공개 방식일 것입니다. 모든 사용자가 당신의 게시물을 확인할 수 있습니다만, 게시물 작성자는 익명으로 처리됩니다.</p>
-                <span>랜덤 공개</span>
-                <p>랜덤 공개를 통해 무작위로 선정한 소수의 사용자에게만 당신의 게시물을 공개합니다.</p>
+        <div className="about-container">
+            <h1 className="about-title">
+                <span>수고하고 무거운 짐 진 자들아</span>
+                <br></br>
+                <span style={{ color: "#f29886" }}>다 내게로 오라</span>    
+            </h1>
+            <span className="about-title-sub">마태복음 11장 28절</span>
+            <p className="about-secondary">
+                말씀과 예배로 하루를 승리하는 삶
+                <br></br>
+                함께 성장하고 서로를 세워가는 공동체
+                <br></br>
+                나누리 청년, 지금 당신을 기다립니다!
+            </p>
+            <div className="about-a-container">
+                <a className="about-a" href="">Start with Nanuri</a>
+                <a className="about-a" href="">Login</a>
+            </div>
+            <div className="about-profile-flow-container">
+                <div className="about-profile-flow-content">
+                    <span>담임 목사 김만수</span>
+                    <span>담당 교역자 이충성</span>
+                    <span>회장 김진규</span>
+                    <span>부회장 유수민</span>
+                    <span>총무 김민진</span>
+                    <span>서기 조은혜</span>
+                    <span>회계 이승호</span>
+
+                    <span>담임 목사 김만수</span>
+                    <span>담당 교역자 이충성</span>
+                    <span>회장 김진규</span>
+                    <span>부회장 유수민</span>
+                    <span>총무 김민진</span>
+                    <span>서기 조은혜</span>
+                    <span>회계 이승호</span>
+                </div>
+            </div>
+            <span className="about-profile-flow-bottom">
+                Together with co-laborers called by Jesus
+            </span>
+            <div className="about-cards-container">
+                <div className="about-card">
+                    <div className="about-card-top">
+                        <h4 className="about-card-top-title">장소 및 시간</h4>
+                        <span className="about-card-icon">
+                            <img src="location.png"></img>
+                        </span>
+                        <br/><br/><br/><br/>
+                        <span>
+                            오후 2시
+                            <br></br>
+                            의왕시 왕림길 47-4
+                            <br></br>
+                            고천성결교회
+                        </span>
+                    </div>
+                </div>
+                <div className="about-card">
+                    <div className="about-card-top">
+                        <h4 className="about-card-top-title">찬양팀</h4>
+                        <span className="about-card-icon">
+                            <img src="artist.png"></img>
+                        </span>
+                        <br/><br/><br/><br/>
+                        <span>
+                            실력이 아닌 마음으로 섬기는 이들
+                            <br></br>
+                            주님을 섬기고 싶은 분들 대환영
+                            <br></br>
+                            리더 변형섭
+                        </span>
+                    </div>
+                </div>
+                <div className="about-card">
+                    <div className="about-card-top">
+                        <h4 className="about-card-top-title">주보</h4>
+                        <span className="about-card-icon">
+                            <img src="infomation.png"></img>
+                        </span>
+                        <br/><br/><br/><br/>
+                        <span>
+                            말씀이 나를 이끌게 한다!
+                            <br></br>
+                            이번 주는 어떤 말씀이
+                            <br></br>
+                            우리를 기다리고 있을까요?
+                        </span>
+                    </div>
+                </div>
+                <div className="about-card">
+                    <div className="about-card-top">
+                        <h4 className="about-card-top-title">인스타그램</h4>
+                        <span className="about-card-icon">
+                            <img src="star.png"></img>
+                        </span>
+                        <br/><br/><br/><br/>
+                        <span>
+                            나누리 최신 소식을 만나보세요
+                            <br></br>
+                            @nanuri_gram
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     )
