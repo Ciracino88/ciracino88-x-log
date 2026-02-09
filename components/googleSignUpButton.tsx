@@ -24,9 +24,8 @@ export default function GoogleLoginButton() {
   return (
     <button
       onClick={handleGoogleLogin}
-      className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded hover:bg-gray-50"
+      className="google-sign-up-btn"
     >
-      <img src="https://www.google.com/favicon.ico" alt="Google" width={20} height={20} />
       Google로 계속하기
     </button>
   )

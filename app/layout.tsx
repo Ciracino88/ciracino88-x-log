@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Home, Heart, MessageCircle, PlusCircle } from "lucide-react"
 import Link from 'next/link';
 
 const geistSans = Geist({
@@ -31,13 +30,10 @@ export default function RootLayout({
       >
         <div className="root-container">
           <div className="navbar">
-            <Link className="navbar-item" href="/about">메인 페이지</Link>
-            <Link className="navbar-item" href="#">소개</Link>
-            <Link className="navbar-item" href="#">찬양팀</Link>
-            <Link className="navbar-item" href="#">헌금</Link>
-            <Link className="navbar-item" href="#">나누리 일정</Link>
-            <Link className="navbar-item" href="#">회계장부</Link>
-            <Link className="navbar-item" href="#">설문조사</Link>
+            <Link className="navbar-item" href="/">Nanuri</Link>
+            <span className="navbar-sidebar-btn">
+              <img className="navbar-sidebar-btn-img" src="menu.png"></img>
+            </span>
           </div>
           {children}
         </div>
