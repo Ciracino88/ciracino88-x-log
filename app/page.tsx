@@ -74,7 +74,7 @@ export default function About() {
                         </span>
                     </div>
                 </div>
-                <div className="about-card">
+                <a href="/account" className="about-card">
                     <div className="about-card-top">
                         <h4 className="about-card-top-title">주보</h4>
                         <span className="about-card-icon">
@@ -89,7 +89,7 @@ export default function About() {
                             우리를 기다리고 있을까요?
                         </span>
                     </div>
-                </div>
+                </a>
                 <a href="https://www.instagram.com/nanuri_gram/" className="about-card">
                     <div className="about-card-top">
                         <h4 className="about-card-top-title">인스타그램</h4>

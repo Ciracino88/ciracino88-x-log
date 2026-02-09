@@ -140,10 +140,6 @@ body {
     line-height: 1.5;
 }
 
-.about-a-container {
-    
-}
-
 .about-a {
     background-color: #ec5353;
     color: white;
@@ -415,6 +411,72 @@ body {
     line-height: 1.6;
     color: #666;
     white-space: pre-line;
+}
+
+.account-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;              /* 카드 사이 간격 조금 더 넉넉하게 */
+  max-width: 800px;       /* 전체 폭을 좀 더 넓게 → 카드도 커짐 */
+  margin: 10vh auto;
+  padding: 0 20px;
+}
+
+.account-month-card {
+  /* 정사각형 유지하면서 크기 키우기 */
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  
+  /* 최소 크기 강제 지정 */
+  min-width: 160px;       /* ← 이 값이 핵심! */
+  min-height: 160px;
+  
+  /* 중앙 정렬 & 글씨 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;      /* 월 숫자 크게 */
+  font-weight: 800;
+  color: #1e293b;
+  
+  /* 배경 & 효과 */
+  background: linear-gradient(135deg, #f8fafc 0%, #f1dcdc 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.account-month-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+  background: linear-gradient(135deg, #e0f2fe 0%, #ff6b6b 100%);
+}
+
+.account-detail-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10vh auto;
+}
+
+.account-detail-card {
+    
+}
+
+.account-detail-container > div {
+    
+}
+
+.income-text {
+    color: red;
+}
+
+.outcome-text {
+    color: blue;
 }
 
 .root-container {
