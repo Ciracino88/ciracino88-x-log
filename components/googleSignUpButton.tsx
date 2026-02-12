@@ -1,6 +1,7 @@
 "use client"
 
 import { supabase } from '@/utils/supabase'
+import CustomButton from './customButton/customButton'
 
 export default function GoogleLoginButton() {
   const handleGoogleLogin = async () => {
@@ -22,11 +23,10 @@ export default function GoogleLoginButton() {
   }
 
   return (
-    <button
+    <CustomButton
       onClick={handleGoogleLogin}
-      className="google-sign-up-btn"
     >
       Google로 계속하기
-    </button>
+    </CustomButton>
   )
 }

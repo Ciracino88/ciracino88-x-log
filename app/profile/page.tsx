@@ -1,3 +1,5 @@
+import style from "./profile.module.css"
+
 export default function profile() {
     const profile_members = [
         {
@@ -42,19 +44,19 @@ export default function profile() {
         }
     ]
     return(
-        <div className="profile-container">
+        <div className={style.profile_container}>
             {profile_members.map((member, i) => (
-                <div className="profile-card" key={i}>
-                <div className="profile-card-img">
+                <div className={style.profile_card} key={i}>
+                <div className={style.profile_card_img}>
                     <img src={member.img_url}></img>
                 </div>
-                <div className="profile-divider"></div>
-                <div className="profile-card-info">
-                    <div className="profile-card-title">
-                        <span className="profile-card-name">{member.name}</span>
-                        <span className="profile-card-role">{member.position}</span>
+                <div className={style.profile_divider}></div>
+                <div className={style.profile_card_info}>
+                    <div className={style.profile_card_title}>
+                        <span className={style.profile_card_name}>{member.name}</span>
+                        <span className={style.profile_card_bio}>{member.position}</span>
                     </div>
-                    <div className="profile-card-bio">
+                    <div className={style.profile_card_bio}>
                         {member.comment}
                     </div>
                 </div>

@@ -1,0 +1,75 @@
+.profile_container {
+    margin: 10vh auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+.profile_card {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #F7F7F7;
+}
+
+.profile_card_img {
+    margin: 20px;
+    width: 20vh;           /* 원하는 정사각형 크기 */
+    height: 20vh;
+    border-radius: 50%;     /* 원형으로 보이게 하려면 */
+    overflow: hidden;       /* 넘치는 부분 자르기 */
+    flex-shrink: 0;
+    border: 2px solid #ec5353;
+}
+
+.profile_card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* 핵심 속성 */
+    object-position: center;
+}
+
+.profile_divider {
+    width: 0.1vh;
+    height: 20vh;           /* 선의 길이 */
+    background: #333333;
+    margin: 2vw;
+}
+
+.profile_card_info {
+    width: 100%;
+    margin: 20px;
+    margin-right: 4vw;
+}
+
+.profile_card_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+
+.profile_card_name {
+    font-family: 'Spoqa Han Sans Neo', 'Pretendard', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.profile_card_role {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.profile_card_bio {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    white-space: pre-line;
+}
