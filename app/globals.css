@@ -325,15 +325,7 @@ body {
 .account-detail-container {
     display: flex;
     flex-direction: column;
-    margin: 10vh 30vw;
-}
-
-.account-detail-card {
-    
-}
-
-.account-detail-container > div {
-    
+    margin: 10vh 24vw;
 }
 
 .account-detail-rows-container {

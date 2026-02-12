@@ -14,17 +14,29 @@
 
 .account_detail_body_rows_container {
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    gap: 20px;
+    flex-direction: row;
     width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
+    gap: 24px;
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    /* 전체 컨테이너도 살짝 부드럽게 */
+    min-height: 500px;
+    /* 레이아웃 붕괴 방지 */
+    overflow: hidden;
+    /* 넘치는 내용 숨김 */
 }
 
 .account_detail_body_row {
     display: flex;
     flex-direction: column;
+}
+
+.transaction_container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow-y: auto;
+    /* 내용이 길면 스크롤 */
+    transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .date_card {
@@ -85,6 +97,104 @@
     color: #ef4444;
 }
 
-.account_detail_category {
-    
+.category_edit_panel {
+    background: #f8fafc;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    overflow-y: auto;
+    transition:
+        flex 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.45s ease,
+        visibility 0.45s ease;
+}
+
+.category_edit_panel.visible {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.category_input_area {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.category_input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.category_list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.category_list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.pk_checkbox {
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+    border: 2px solid #9ca3af;
+    background-color: white;
+
+    margin-right: 12px;
+    accent-color: #3b82f6;
+
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* 체크됐을 때 스타일 */
+.pk_checkbox:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.selected_count {
+  font-size: 14px;
+  color: #64748b;
+  margin: 8px 0 16px;
+}
+
+.saved_categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.category_tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.category_name {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.category_amount {
+  color: #3b82f6;
+  font-weight: 600;
 }
