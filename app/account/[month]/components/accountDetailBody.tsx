@@ -3,10 +3,12 @@
 import { useState } from "react"
 import style from "./accountDetailBody.module.css"
 import CapsuleButton from "@/components/capsuleButton/capsuleButton"
+import { Transaction } from "@/app/types/transaction"
 
 interface AccountDetailBodyProps {
-    targets: string[][];
+    targets: Transaction.Type[]
 }
+
 export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
     const days = [
         "01", "02", "03", "04", "05", "06", "07", "08", "09",
@@ -15,28 +17,32 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
         "30", "31"
     ];
 
+    // 대차대조표 작성 모드 활성화 트리거
     const [editMode, setEditMode] = useState(false);
-    // 선택된 거래의 고유 키: day + j 로 임의 설정. 추후 확장시 리팩토링 필요
+
+    // 선택된 거래 배열 (id 값을 저장)
     const [selectedTransactions, setSelectedTransactions] = useState<Set<string>>(new Set());
+    
     // 저장된 카테고리
     const [categories, setCategories] = useState<Array<{ name: string; amount: number; count: number }>>([]);
+    
     const [newCategoryName, setNewCategoryName] = useState("");
 
     // 1. 수입/지출/전체 옵션 적용해서 필터링
     const filtering = () => {
         if (filter === "income") {
-            return targets.filter(t => t[4] === "0");
+            return targets.filter(t => t.isIncome === true);
         }
         if (filter === "outcome") {
-            return targets.filter(t => t[5] === "0");
+            return targets.filter(t => t.isIncome === false);
         }
         return targets; // "전체" 옵션 반환
     }
 
     // 2. 날짜별로 모아서 재분류
     const filtered_data = (date: string) => {
-        const filtered = filtering();
-        return filtered.filter(t => t[1].split(" ")[0].split(".")[2] === date);
+        const data = filtering();
+        return data.filter(t => t.day === date);
     }
 
     // 콤보박스 옵션 (전체/수입/지출, default=전체)
@@ -53,15 +59,9 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
 
         days.forEach((day) => {
             const items = filtered_data(day);
-            items.forEach((fd, j) => {
-                // 1. 고유키 설정
-                const primaryKey = `${day}-${j}`;
-
-                // 2. 선택한 거래항목 중에 해당 항목이 있다면
-                if (selectedTransactions.has(primaryKey)) {
-                    const isIncome = fd[4] === "0";
-                    const amountStr = isIncome ? fd[5] : fd[4];
-                    total += Number(amountStr.replace(/,/g, "")) || 0;
+            items.forEach(item => {
+                if (selectedTransactions.has(item.id)) {
+                    total += Number(item.value.replace(/,/g, "")) || 0;
                 }
             });
         });
@@ -112,7 +112,13 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                 <div
                     className={style.transaction_container}
                     style={{
-                        flex: editMode ? "0 1 40%" : "1 1 100%",
+                        // flex: flex-grow | flex-shrink | flex-basis
+                        // flex-grow : 남는 공간이 있을 때, 얼마나 커질 수 있는가
+                        // flex-shrink : 공간이 부족할 때, 얼마나 더 작아질 수 있는가
+                        // flex-basis : 기본 크기
+                        // 0 1 40% => 최소 40% 차치, 줄어들기만 가능
+                        // 1 1 100% => 최대 100% 까지 늘어날 수 있으나 줄어들 수도 있음.
+                        flex: editMode ? "0 1 50%" : "1 1 100%",
                         transition: "flex 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                     }}
                 >
@@ -126,35 +132,32 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                                     {day}일 거래 내역
                                 </div>
                                 <div className={style.card_list}>
-                                    {items.map((fd, j) => {
-                                        const isIncome = fd[4] === "0";
-                                        const symbol = isIncome ? "+" : "-";
-                                        const primaryKey = `${day}-${j}`; // 임의의 고유키 설정
-
+                                    {items.map(item => {
+                                        const symbol = item.isIncome ? "+" : "-";
                                         return (
                                             <div
-                                                key={primaryKey}
-                                                className={`${style.transaction_card} ${isIncome ? style.income : style.outcome}`}
+                                                key={item.id}
+                                                className={`${style.transaction_card} ${item.isIncome ? style.income : style.outcome}`}
                                             >
                                                 {editMode && (
                                                     <input
                                                         type="checkbox"
-                                                        checked={selectedTransactions.has(primaryKey)}
+                                                        checked={selectedTransactions.has(item.id)}
                                                         onChange={(e) => {
                                                             const newSet = new Set(selectedTransactions);
                                                             if (e.target.checked) {
-                                                                newSet.add(primaryKey);
+                                                                newSet.add(item.id);
                                                             } else {
-                                                                newSet.delete(primaryKey);
+                                                                newSet.delete(item.id);
                                                             }
                                                             setSelectedTransactions(newSet);
                                                         }}
                                                         className={style.pk_checkbox}
                                                     />
                                                 )}
-                                                <div className={style.description}>{fd[3]}</div>
+                                                <div className={style.description}>{item.description}</div>
                                                 <div className={style.amount}>
-                                                    {symbol} {fd[4] === "0" ? fd[5] : fd[4]} 원
+                                                    {symbol} {item.value} 원
                                                 </div>
                                             </div>
                                         );
@@ -168,7 +171,7 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                 <div
                     className={style.category_edit_panel}
                     style={{
-                        flex: editMode ? "1 1 60%" : "0 0 0%",
+                        flex: editMode ? "1 1 50%" : "0 0 0%",
                         opacity: editMode ? 1 : 0,
                         visibility: editMode ? "visible" : "hidden",
                         transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -205,7 +208,7 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                             <div key={idx} className={style.category_tag}>
                                 <span className={style.category_name}>{cat.name}</span>
                                 <span className={style.category_amount}>
-                                    {cat.amount.toLocaleString()}원 ({cat.count}건)
+                                    {cat.amount.toLocaleString()} 원 ({cat.count}건)
                                 </span>
                             </div>
                         ))}
