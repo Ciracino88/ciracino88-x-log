@@ -11,6 +11,7 @@ export namespace Transaction {
         description: string;
         isIncome: boolean;
         value: string;
+        categotyId?: string;
     }
 
     // factory 함수 : 생성자 역할
@@ -24,7 +25,8 @@ export namespace Transaction {
             day: partial.day,
             description: partial.description,
             isIncome: partial.isIncome,
-            value: partial.value
+            value: partial.value,
+            categotyId: partial.categotyId ?? ""
         };
     }
 }

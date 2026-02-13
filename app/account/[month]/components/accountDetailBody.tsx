@@ -4,6 +4,8 @@ import { useState } from "react"
 import style from "./accountDetailBody.module.css"
 import CapsuleButton from "@/components/capsuleButton/capsuleButton"
 import { Transaction } from "@/app/types/transaction"
+import { Category } from "@/app/types/category"
+import AcccountDetailCardList from "./accountDetailCardList"
 
 interface AccountDetailBodyProps {
     targets: Transaction.Type[]
@@ -20,11 +22,11 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
     // 대차대조표 작성 모드 활성화 트리거
     const [editMode, setEditMode] = useState(false);
 
-    // 선택된 거래 배열 (id 값을 저장)
-    const [selectedTransactions, setSelectedTransactions] = useState<Set<string>>(new Set());
+    // 선택된 거래 배열
+    const [selectedTransactions, setSelectedTransactions] = useState<Set<Transaction.Type>>(new Set());
     
     // 저장된 카테고리
-    const [categories, setCategories] = useState<Array<{ name: string; amount: number; count: number }>>([]);
+    const [categories, setCategories] = useState<Category.Type[]>([]);
     
     const [newCategoryName, setNewCategoryName] = useState("");
 
@@ -60,7 +62,7 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
         days.forEach((day) => {
             const items = filtered_data(day);
             items.forEach(item => {
-                if (selectedTransactions.has(item.id)) {
+                if (selectedTransactions.has(item)) {
                     total += Number(item.value.replace(/,/g, "")) || 0;
                 }
             });
@@ -75,13 +77,26 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
             return;
         }
 
-        // 새 카테고리 추가
-        setCategories((prev) => [
-            ...prev,
-            { name: newCategoryName.trim(), amount: getTotalSelectedAmount(), count: selectedTransactions.size }
-        ]);
+        // 전체 데이터 -> 선택한 거래 배열 -> 카테고리 객체 생성 -> 기존 카테고리 배열에 추가
+        // 1. 전체 거래 데이터 -> 선택한 거래 배열
+        const selected = targets.filter(s =>
+            selectedTransactions.has(s)
+        );
 
-        // 입력값 초기화 & 선택 해제
+        // 2. 새로운 카테고리 객체 생성
+        const newCategory = Category.create({
+            name: newCategoryName.trim(),
+            transactions: selected
+        });
+
+        // 3. 기존 카테고리에 추가
+        setCategories(prev => [...prev, newCategory]);
+
+        // 전체 데이터에서 카테고리 네임을 반영
+        targets.map(t =>
+            selectedTransactions.has(t) ? t.categotyId = newCategory.name : ""
+        )
+        // 4. 입력값 초기화 & 선택 해제
         setNewCategoryName("");
         setSelectedTransactions(new Set());
     }
@@ -131,38 +146,13 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                                 <div className={style.date_title}>
                                     {day}일 거래 내역
                                 </div>
-                                <div className={style.card_list}>
-                                    {items.map(item => {
-                                        const symbol = item.isIncome ? "+" : "-";
-                                        return (
-                                            <div
-                                                key={item.id}
-                                                className={`${style.transaction_card} ${item.isIncome ? style.income : style.outcome}`}
-                                            >
-                                                {editMode && (
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectedTransactions.has(item.id)}
-                                                        onChange={(e) => {
-                                                            const newSet = new Set(selectedTransactions);
-                                                            if (e.target.checked) {
-                                                                newSet.add(item.id);
-                                                            } else {
-                                                                newSet.delete(item.id);
-                                                            }
-                                                            setSelectedTransactions(newSet);
-                                                        }}
-                                                        className={style.pk_checkbox}
-                                                    />
-                                                )}
-                                                <div className={style.description}>{item.description}</div>
-                                                <div className={style.amount}>
-                                                    {symbol} {item.value} 원
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
+                                <AcccountDetailCardList
+                                    items={items}
+                                    editMode={editMode}
+                                    selectedTransactions={selectedTransactions}
+                                    setSelectedTransactions={setSelectedTransactions}
+                                >
+                                </AcccountDetailCardList>
                             </div>
                         )
                     })}
@@ -208,7 +198,7 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                             <div key={idx} className={style.category_tag}>
                                 <span className={style.category_name}>{cat.name}</span>
                                 <span className={style.category_amount}>
-                                    {cat.amount.toLocaleString()} 원 ({cat.count}건)
+                                    {Category.getAmount(cat).toLocaleString()} 원 ({cat.transactions.length}건)
                                 </span>
                             </div>
                         ))}
