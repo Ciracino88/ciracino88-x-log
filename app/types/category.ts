@@ -4,6 +4,7 @@ export namespace Category {
     export interface Type {
         id: string;
         name: string;
+        isIncome: string; // none | income | outcome
         transactions: Transaction.Type[];
     }
 
@@ -14,6 +15,7 @@ export namespace Category {
         return {
             id: partial.id ?? crypto.randomUUID(),
             name: partial.name,
+            isIncome: partial.isIncome,
             transactions: partial.transactions
         };
     }

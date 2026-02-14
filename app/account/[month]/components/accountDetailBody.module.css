@@ -112,30 +112,3 @@
   color: #64748b;
   margin: 8px 0 16px;
 }
-
-.saved_categories {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.category_tag {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-.category_name {
-  font-weight: 500;
-  color: #1e293b;
-}
-
-.category_amount {
-  color: #3b82f6;
-  font-weight: 600;
-}

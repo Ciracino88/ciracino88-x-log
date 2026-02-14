@@ -6,6 +6,7 @@ import CapsuleButton from "@/components/capsuleButton/capsuleButton"
 import { Transaction } from "@/app/types/transaction"
 import { Category } from "@/app/types/category"
 import AcccountDetailCardList from "./accountDetailCardList"
+import AccountDetailSavedCategories from "./accountDetailSavedCategories"
 
 interface AccountDetailBodyProps {
     targets: Transaction.Type[]
@@ -29,6 +30,9 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
     const [categories, setCategories] = useState<Category.Type[]>([]);
     
     const [newCategoryName, setNewCategoryName] = useState("");
+
+    // 만드는 카테고리가 수입인지 지출인지 판단하는 트리거
+    const [isIncome, setIsIncome] = useState<"income" | "outcome" | "none">("none");
 
     // 1. 수입/지출/전체 옵션 적용해서 필터링
     const filtering = () => {
@@ -86,6 +90,7 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
         // 2. 새로운 카테고리 객체 생성
         const newCategory = Category.create({
             name: newCategoryName.trim(),
+            isIncome: isIncome,
             transactions: selected
         });
 
@@ -150,7 +155,9 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                                     items={items}
                                     editMode={editMode}
                                     selectedTransactions={selectedTransactions}
+                                    isIncome={isIncome}
                                     setSelectedTransactions={setSelectedTransactions}
+                                    setIsIncome={setIsIncome}
                                 >
                                 </AcccountDetailCardList>
                             </div>
@@ -187,22 +194,17 @@ export default function AccountDetailBody({ targets }: AccountDetailBodyProps) {
                     </div>
                     {/* 선택한 항목 수 표시 */}
                     {selectedTransactions.size > 0 && (
-                        <div className={style.selected_count}>
+                        <div className={`${style.selected_count}`}>
                             {selectedTransactions.size}건 선택됨 (합계: {getTotalSelectedAmount().toLocaleString()}원)
                         </div>
                     )}
                     
                     {/* 저장된 카테고리 목록 */}
-                    <div className={style.saved_categories}>
-                        {categories.map((cat, idx) => (
-                            <div key={idx} className={style.category_tag}>
-                                <span className={style.category_name}>{cat.name}</span>
-                                <span className={style.category_amount}>
-                                    {Category.getAmount(cat).toLocaleString()} 원 ({cat.transactions.length}건)
-                                </span>
-                            </div>
-                        ))}
-                    </div>
+                    <AccountDetailSavedCategories
+                        filter={filter}
+                        categories={categories}
+                    >
+                    </AccountDetailSavedCategories>
                 </div>
             </div>
         </div>

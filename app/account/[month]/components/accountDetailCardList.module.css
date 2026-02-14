@@ -34,6 +34,13 @@
     color: #ef4444;
 }
 
+.category_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .category_description {
     color: #8b00ff;
 }
@@ -60,4 +67,13 @@
 .pk_checkbox:checked {
   background-color: #3b82f6;
   border-color: #3b82f6;
+}
+
+.cg_checkbox {
+    accent-color: #8b00ff;
+}
+
+.cg_checkbox:checked {
+  background-color: #8b00ff;
+  border-color: #8b00ff;
 }
