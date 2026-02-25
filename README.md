@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# next js 프로젝트 하면서 알게된 것들 정리
 
-## Getting Started
+2026년 3월 시작.
+공부한 내용과 키워드 정리
 
-First, run the development server:
+## 프로젝트 구조
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### app
+프로젝트 최상단 폴더
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### actions
+app 폴더 바로 아래에 위치하는 폴더. 서버 액션들을 모아두는 폴더.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### auth
+app 폴더 바로 아래에 위치하는 폴더. supabase 인증 관련 라우트를 모아둠.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### supabase 는 google 계정의 패스워드를 모른다.
+supabase 가 google oauth 인증을 통해 사용자의 계정을 생성하더라도, 해당 계정의
+패스워드를 가져오지는 않는다. 따라서 이메일 + 비밀번호 로그인을 하려면 supabase 에서 사용하는 패스워드를 새로 설정해줘야 한다.
 
-## Learn More
+#### 패스워드를 모르는데 어떻게 구글 로그인에 성공할 수 있는가?
+supabase 는 signInWithOAuth 메서드를 호출할 때, provider 값으로 google 을 넣어준다. 이는 google 에게 로그인하려는 사용자가 구글에 존재하는 실제 유저인지 확인해달라는 요청이다. supabase 는 google 의 답변에 따라 계정 생성 및 세션 발급을 진행한다. 즉 google oauth 방식은 패스워드를 필요로 하지 않는다. google 에서 패스워드를 입력해주고, supabase 구글에서 제공한 엑세스 토큰만을 이용하여 해당 사용자를 인증한다.
 
-To learn more about Next.js, take a look at the following resources:
+#### 그래서 내가 만들 기능은?
+구글 회원가입을 통해 사용자의 계정을 생성. auth.updateUser 를 통해 비밀번호 재 설정. 이렇게 해주면 이메일 + 비밀번호 방식으로 로그인도 가능해짐.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## mainPage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### hero
+웹 디자인에서 자주 쓰이는 용어. 메인 페이지에서 가장 먼저 눈에 띄는 상단의 큰 섹션. 사용자에게 해당 웹 페이지가 뭐하는 곳인지 이해하게 만드는 핵심 영역.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### section className 은 일반적으로 섹션의 이름을 쓴다.

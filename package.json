@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.94.1",
     "git": "^0.1.5",
     "lucide-react": "^0.563.0",

@@ -1,29 +1,122 @@
+.container {
+  height: 90vh;                  /* 화면 높이 100% 고정 */
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* 수직 중앙 */
+  align-items: center;            /* 수평 중앙 */
+  background: #f7fafc;            /* 배경색은 취향대로 */
+  overflow: hidden;               /* 스크롤바 강제 제거 */
+  padding: 1rem;                  /* 모바일용 최소 여백 */
+  box-sizing: border-box;
+}
 
-.login_container {
+.form {
+    width: 100%;
+  max-width: 400px;            /* 최대 너비 제한 (좁은 폼 유지) */
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* 살짝 그림자 */
+}
+
+.form_group {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30vh;
-    gap: 10px;
-}
-
-.login_title {
-    text-align: left;
-    font-size: 24px;
-    font-weight: 500;
-}
-
-.login_input {
+    gap: 0.35rem;
+    margin-bottom: 1.1rem;
     width: 100%;
-    padding: 10px 20px;
-    font-size: 1.5rem;
+}
+
+.form_label {
+    font-size: 1.2rem;
     font-weight: 500;
+    color: #2d3748;
+}
+
+.input {
+    width: 92%;
+    padding: 0.68rem 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
-    color: #1a1a1a;
-    background-color: #ffffff;
-    border: 2px solid #d0d7e0;
-    border-radius: 5px;
+    color: #2d3748;
+    background: #ffffff;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.input:focus {
     outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.input::placeholder {
+    color: #a0aec0;
+}
+
+.error_message {
+    margin-top: 0.3rem;
+    font-size: 0.8125rem;
+    color: #e53e3e;
+}
+
+.signUp_btn {
+    position: relative;
+    overflow: hidden;
+
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 108.5%;
+    justify-content: center;
+    padding: 0.68rem 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #3c4657;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: all 0.2s ease;
+}
+
+/* 호버 스타일 적용 (disable 상태에서만 미적용) */
+.signUp_btn:hover:not(:disabled) {
+  background-color: #2d3748;
+  transform: translateY(-1px);
+}
+
+.signUp_btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.normal_text, .hover_text {
+    transition: all 0.25s ease;
+}
+
+.normal_text {
+    display: inline-block;
+}
+
+.hover_text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.signUp_btn:hover .normal_text {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.signUp_btn:hover .hover_text {
+    opacity: 1;
+    transform: translate(-50%, -50%);
 }
