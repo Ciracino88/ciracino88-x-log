@@ -14,7 +14,7 @@ export default function weekly() {
         { time: "11:50", title: "성경 낭독", desc: "창세기 6장 5-9절" },
         { time: "12:00", title: "설교", desc: "이 세대를 살리는 한 사람" },
         { time: "12:10", title: "축도", desc: "이충성 목사님" },
-        { time: "12:20", title: "광고", desc: "김민진 청년" },
+        { time: "12:20", title: "주기도문", desc: "다함께" },
     ];
 
     return (
@@ -66,6 +66,12 @@ export default function weekly() {
                             ))}
                         </div>
                         {activeIndex !== null && (
+                            <div className={style.timeline_detail_card}>
+                                <h3>{timelineItems[activeIndex].title}</h3>
+                                <p>{timelineItems[activeIndex].desc}</p>
+                            </div>
+                        )}
+                        {activeIndex === 5 && (
                             <div className={style.timeline_detail_card}>
                                 <h3>{timelineItems[activeIndex].title}</h3>
                                 <p>{timelineItems[activeIndex].desc}</p>

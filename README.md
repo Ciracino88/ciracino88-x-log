@@ -3,9 +3,7 @@
 2026년 3월 시작.
 공부한 내용과 키워드 정리
 
-## 프로젝트 구조
-
-### app
+## app
 프로젝트 최상단 폴더
 
 ### actions
@@ -25,8 +23,21 @@ supabase 는 signInWithOAuth 메서드를 호출할 때, provider 값으로 goog
 구글 회원가입을 통해 사용자의 계정을 생성. auth.updateUser 를 통해 비밀번호 재 설정. 이렇게 해주면 이메일 + 비밀번호 방식으로 로그인도 가능해짐.
 
 ## mainPage
+웹사이트 들어가면 가장 먼저 보이는 페이지
 
 ### hero
 웹 디자인에서 자주 쓰이는 용어. 메인 페이지에서 가장 먼저 눈에 띄는 상단의 큰 섹션. 사용자에게 해당 웹 페이지가 뭐하는 곳인지 이해하게 만드는 핵심 영역.
 
 ### section className 은 일반적으로 섹션의 이름을 쓴다.
+
+## weeklyEditPage
+주보 수정 페이지. 관리자 페이지를 통해 접근이 가능.
+
+### useFormContext
+주보 수정 페이지에서는 다양한 값들을 입력받아야 한다. 따라서 각 타입에 대한 입력 필드가 필요하고, 이 필드는 따로 컴포넌트로 분리하여 작성하고, 호출하는 방식으로 사용하는 것이 효율적이다. 요컨대, 이 페이지는 하나의 폼이 여러 개의 컴포넌트로 쪼개져있는 구조이므로 useFormContext 로 폼 상태를 공유하는 방식을 채택한다.
+
+### react-datepicker
+직관적인 UI를 그냥 가져다 쓸 수 있다는 점이 엄청난 장점.
+
+### controller
+react hook form 은 기본적으로 uncontrolled 방식으로 동작한다. 조금 더 자세히 말하자면, input, button 과 같은 HTML 요소에는 controlled 방식으로 동작하지만, react-datepicker 같은 외부 컴포넌트에 대해서는 controller 를 필요로 한다.

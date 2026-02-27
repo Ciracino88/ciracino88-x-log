@@ -25,7 +25,7 @@ export default function MainPage() {
                                 <span className={style.stat_label}>성경 읽기</span>
                             </div>
                         </div>
-                        <a href="#" className={style.cta_btn}>나누리 둘러보기</a>
+                        <a href="/bible" className={style.cta_btn}>나누리 둘러보기</a>
                     </div>
                 </section>
                 <section className={style.features}>

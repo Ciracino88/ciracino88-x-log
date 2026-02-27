@@ -3,11 +3,12 @@
 import { createClient } from "@/utils/supabase/client"
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import styles from './navbar.module.css' // 또는 tailwind 사용 시 className으로
+import styles from './navbar.module.css'
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(true)
 
   useEffect(() => {
     const supabase = createClient()

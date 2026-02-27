@@ -30,6 +30,8 @@ export default function RootLayout({
         <Navbar/>
         <main style={{ paddingTop: "4rem" }}>
           {children}
+          <div id="datepicker-portal" />
+          <div id="preacher-portal" />
         </main>
       </body>
     </html>
