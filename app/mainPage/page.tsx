@@ -101,10 +101,10 @@ export default function MainPage() {
                             </div>
                         </Link>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>▶️</div>
-                            <h3>유튜브</h3>
+                            <div className={style.menus_icon}>🎲</div>
+                            <h3>AWESOME PLACE</h3>
                             <p>Comming Soon</p>
-                            {/* <p>목사님 설교를 다시 듣고 싶다면?</p> */}
+                            {/* <p>예배와 교제, 문화가 있는 나누리의 새로운 모임 공간</p> */}
                         </div>
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>🌟</div>
