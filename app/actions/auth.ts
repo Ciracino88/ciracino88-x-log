@@ -27,6 +27,29 @@ export async function signInWithGoogle() {
   }
 }
 
+// 카카오 계정으로 회원가입
+export async function signInWithKakao() {
+  const supabase = await createSupabaseServerClient()
+  const origin = (await headers()).get('origin') || 'http://localhost:3000'
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'kakao',
+    options: {
+      redirectTo: `${origin}/auth/callback`,
+    },
+  })
+
+  if (error) {
+    console.error('카카오 로그인 에러:', error)
+    alert("카카오 로그인에 실패했습니다.\n" + error.message)
+    return
+  }
+
+  if (data.url) {
+    redirect(data.url)  // Google 로그인 페이지로 리다이렉트
+  }
+}
+
 // supabase 비밀번호 설정
 export async function setPassword(formData: FormData) {
   const password = formData.get('password') as string

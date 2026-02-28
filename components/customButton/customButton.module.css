@@ -7,7 +7,7 @@
     font-size: 1rem;
     font-weight: 500;
     color: white;
-    background-color: #3b82f6;
+    background-color: #10B981;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -16,7 +16,7 @@
 
 /* 호버 스타일 적용 (disable 상태에서만 미적용) */
 .container:hover:not(:disabled) {
-  background-color: #2563eb;
+  background-color: #059669;
   transform: translateY(-1px);
 }
 

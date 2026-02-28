@@ -84,12 +84,14 @@ export default function MainPage() {
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>🗺️</div>
                             <h3>장소</h3>
-                            <p>나누리 위치가 궁금하다면?</p>
+                            <p>Comming Soon</p>
+                            {/* <p>나누리 위치가 궁금하다면?</p> */}
                         </div>
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>📆</div>
                             <h3>캘린더</h3>
-                            <p>나누리 일정을 한 눈에 살펴보세요</p>
+                            <p>Comming Soon</p>
+                            {/* <p>나누리 일정을 한 눈에 살펴보세요</p> */}
                         </div>
                         <Link href="/weekly" className={style.menus_card_link}>
                             <div className={style.menus_card}>
@@ -101,12 +103,14 @@ export default function MainPage() {
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>▶️</div>
                             <h3>유튜브</h3>
-                            <p>목사님 설교를 다시 듣고 싶다면?</p>
+                            <p>Comming Soon</p>
+                            {/* <p>목사님 설교를 다시 듣고 싶다면?</p> */}
                         </div>
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>🌟</div>
                             <h3>인스타그램</h3>
-                            <p>나누리를 인스타에서 만나보세요</p>
+                            <p>Comming Soon</p>
+                            {/* <p>나누리를 인스타에서 만나보세요</p> */}
                         </div>
                     </div>
                 </section>
