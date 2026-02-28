@@ -1,19 +1,22 @@
 .container {
-    min-height: 100vh;
-    background: #f5f5f7;
+  min-height: 100vh;
+  background: #f5f5f7;
 }
 
 /* 메인 영역 */
 .main {
-    width: 100%;
-  max-width: 480px;           /* 모바일 최대 너비 제한 */
-  margin: 0 auto;             /* ← 핵심 : 중앙 정렬 */
-  padding: 0 8px;             /* 아주 좁은 기기 대응 */
+  width: 100%;
+  max-width: 480px;
+  /* 모바일 최대 너비 제한 */
+  margin: 0 auto;
+  /* ← 핵심 : 중앙 정렬 */
+  padding: 0 8px;
+  /* 아주 좁은 기기 대응 */
   box-sizing: border-box;
 }
 
 .section {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 .section_title {
@@ -27,9 +30,10 @@
   background: white;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
   border: 1px solid #e5e5ea;
-  margin: 0 auto;             /* 혹시 모를 추가 안전장치 */
+  margin: 0 auto;
+  /* 혹시 모를 추가 안전장치 */
   width: 100%;
   max-width: 420px;
 }
@@ -40,7 +44,8 @@
   padding: 16px 20px;
   border-bottom: 1px solid #e5e5ea;
   gap: 16px;
-  position: relative;               /* 필요 시 label 위치 제어를 위해 */
+  position: relative;
+  /* 필요 시 label 위치 제어를 위해 */
   transition: background 0.25s ease, padding 0.25s ease;
 }
 
@@ -54,12 +59,14 @@
   color: #8e8e93;
   font-size: 17px;
   font-weight: 400;
-  transition: 
+  transition:
     color 0.25s ease,
-    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),  /* iOS-like 부드러운 커브 */
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    /* iOS-like 부드러운 커브 */
     font-size 0.25s ease,
     font-weight 0.25s ease;
-  transform: translateY(0);         /* 기본 위치 */
+  transform: translateY(0);
+  /* 기본 위치 */
 }
 
 .field .value {
@@ -80,6 +87,7 @@
   border: none;
   outline: none;
   padding: 0;
+  padding-left: 0.8rem;
   transition: border-bottom 0.25s ease, color 0.25s ease;
   cursor: pointer;
 }
@@ -93,17 +101,89 @@
 .field:focus-within label {
   color: #007aff;
   font-weight: 600;
-  font-size: 18px;                  /* 살짝 작아지며 floating 느낌 (선택) */
+  font-size: 18px;
+  /* 살짝 작아지며 floating 느낌 (선택) */
 }
 
 .field:focus-within {
-  background: rgba(0, 122, 255, 0.02);  /* 아주 은은한 블루 배경 */
+  background: rgba(0, 122, 255, 0.02);
+  /* 아주 은은한 블루 배경 */
 }
 
 /* placeholder 스타일 (iOS처럼 연한 회색) */
 .input::placeholder {
-  color: #8e8e93;                   /* label과 비슷한 색 */
-  opacity: 1;                       /* iOS에서 placeholder 투명도 조정 */
+  color: #8e8e93;
+  opacity: 1;
+}
+
+.result_section {
+  margin-top: 24px;
+}
+
+.result_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.result {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #111827
+}
+
+.result_view_btn {
+  padding: 8px 18px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.result_view_btn:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.verse_card_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.verse_card {
+  padding: 18px 20px;
+  background: #f9fafb;
+  border-radius: 24px;
+  border: 1px solid #e5e5ea;
+  transition: all 0.15s;
+}
+
+.verse_card:hover {
+  background: #f1f5f9;
+  border-color: #e5e7eb;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.verse_num {
+  font-weight: 700;
+  color: #2563eb;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.verse_text {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #1f2937;
+  word-break: keep-all;
 }
 
 .adSection {
@@ -124,11 +204,13 @@
 
 .adCard {
   background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);       /* 블러 효과 */
+  backdrop-filter: blur(16px);
+  /* 블러 효과 */
   -webkit-backdrop-filter: blur(16px);
-  border-radius: 24px;               /* 아주 둥글게 */
+  border-radius: 24px;
+  /* 아주 둥글게 */
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.08),
     inset 0 1px 1px rgba(255, 255, 255, 0.6);
   margin-bottom: 24px;
@@ -165,4 +247,32 @@
 
 .addButton:hover {
   background: #0062cc;
+}
+
+.submit_btn {
+  display: block;
+  width: 100%;
+  max-width: 26.5rem;               /* ← 여기서 최대 너비 제한 → 튀어나옴 해결 */
+  margin: 24px auto 0;            /* 위쪽 여백 넉넉하게 */
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #007aff, #0062cc);  /* 살짝 그라데이션 */
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);  /* 은은한 그림자 */
+}
+
+.submit_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 122, 255, 0.35);
+  background: linear-gradient(135deg, #008aff, #0070e0);
+}
+
+.submit_btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
 }

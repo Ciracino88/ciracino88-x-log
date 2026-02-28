@@ -1,36 +1,46 @@
 'use client'
 
+import type { Profile } from "@/app/types/profile"
+import { User } from "@supabase/supabase-js"
 import { createClient } from "@/utils/supabase/client"
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './navbar.module.css'
 
 export default function Navbar() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true)
-  const [isAdmin, setIsAdmin] = useState(true)
 
   useEffect(() => {
     const supabase = createClient()
-    const forceCheckUser = async (attempt = 1) => {
-      const { data: { user }, error } = await supabase.auth.getUser()
-      console.log(`[NAVBAR] 시도 ${attempt}회 - user:`, user, 'error:', error)
 
-      if (user) {
-        setUser(user)
+    const loadUserAndProfile = async () => {
+      // 1. 로그인 유저 정보 가져오기
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      
+      if (userError || !user) {
         setLoading(false)
         return
       }
 
-      // 3번까지 시도 (지연 대비)
-      if (attempt < 3) {
-        setTimeout(() => forceCheckUser(attempt + 1), 800) // 0.8초 간격
-      } else {
-        setLoading(false)
-      }
+      setUser(user)
+
+      // 2. profiles 테이블에서 role 가져오기
+      const { data } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("user_id", user.id)
+        .single()
+
+      console.log(data)
+      
+      setProfile(data as Profile | null)
+
+      setLoading(false)
     }
 
-    forceCheckUser(1) // 즉시 1회
+    loadUserAndProfile()
 
     // 실시간 리스너 (늦게 올 때 대비)
     const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
@@ -54,6 +64,8 @@ export default function Navbar() {
 
   const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split("@")[0] || "사용자"
 
+  const isAdmin = profile?.role === "admin"
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
@@ -72,6 +84,12 @@ export default function Navbar() {
                 <Link href="/mypage" className={styles.userName}>
                   {displayName}
                 </Link>
+                {/* 관리자일 경우 관리자 페이지 버튼 보여짐 */}
+                {isAdmin&& (
+                  <Link href="/adminPage" className={styles.admin_btn}>
+                    관리자 페이지
+                  </Link>
+                )}
                 <button
                   onClick={handleLogout}
                   className={styles.logoutButton}

@@ -18,23 +18,23 @@ export default function AdminPage() {
                             <div className={style.menus_card}>
                                 <div className={style.menus_icon}>📖</div>
                                 <h3>주보 작성</h3>
-                                <p>오늘 본문 말씀, 미리 살펴볼까요?</p>
+                                <p>주보 작성 페이지입니다</p>
                             </div>
                         </Link>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>📖</div>
+                            <div className={style.menus_icon}>💰</div>
                             <h3>회계장부 작성</h3>
-                            <p>오늘 본문 말씀, 미리 살펴볼까요?</p>
+                            <p>comming soon</p>
                         </div>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>📖</div>
+                            <div className={style.menus_icon}>⚖️</div>
                             <h3>회칙 관리</h3>
-                            <p>오늘 본문 말씀, 미리 살펴볼까요?</p>
+                            <p>나누리 회칙을 관리하는 페이지입니다</p>
                         </div>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>📖</div>
+                            <div className={style.menus_icon}>✔️</div>
                             <h3>맴버 승인</h3>
-                            <p>오늘 본문 말씀, 미리 살펴볼까요?</p>
+                            <p>로그인 유저를 나누리 회원으로 승격시키세요</p>
                         </div>
                     </div>
                 </section>

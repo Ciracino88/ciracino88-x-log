@@ -112,3 +112,20 @@
 .loginButton:hover {
   background-color: #1d4ed8; /* blue-700 */
 }
+
+.admin_btn {
+  margin-left: 12px;
+  padding: 8px 16px;
+  background: #6D28D9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.admin_btn:hover {
+  background: #5B21B6;
+}
