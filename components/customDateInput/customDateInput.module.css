@@ -1,0 +1,20 @@
+.input {
+  flex: 1;
+  color: #000;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-left: 0.8rem;
+  transition: border-bottom 0.25s ease, color 0.25s ease;
+  cursor: pointer;
+}
+
+.input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

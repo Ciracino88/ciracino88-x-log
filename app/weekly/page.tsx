@@ -1,30 +1,58 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./weekly.module.css"
+import { getLatestBulletin } from "./action";
 
 export default function weekly() {
     const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
     const timelineItems = [
-        { time: "10:30", title: "입례송", desc: "다함께" },
-        { time: "10:35", title: "사도신경", desc: "다함께" },
-        { time: "10:50", title: "경배와 찬양", desc: "다함께" },
-        { time: "11:00", title: "대표 기도", desc: "김민진 청년" },
-        { time: "11:40", title: "헌금", desc: "다함께" },
-        { time: "11:50", title: "성경 낭독", desc: "창세기 6장 5-9절" },
-        { time: "12:00", title: "설교", desc: "이 세대를 살리는 한 사람" },
-        { time: "12:10", title: "축도", desc: "이충성 목사님" },
-        { time: "12:20", title: "주기도문", desc: "다함께" },
+        "입례송",
+        "사도신경",
+        "경배와 찬양",
+        "대표 기도",
+        "헌금",
+        "성경 낭독",
+        "설교",
+        "축도",
+        "주기도문"
     ];
 
-    const content = [
-        { verseNum: "5", verse: "○ 주께서는 사람의 죄악이 세상에 가득 찬 것을 보셨다. 사람이 마음속으로 생각하는 것들은 항상 악한 것들뿐이었다." },
-        { verseNum: "6", verse: "주께서 땅 위에 사람을 지으신 것을 후회하시며 마음 아파하셨다." },
-        { verseNum: "7", verse: "주께서 말씀하셨다. “내가 창조한 사람이지만, 땅 위에서 쓸어버려야겠다. 사람뿐만 아니라 집짐승과 길짐승과 날짐승까지도 모조리 쓸어버려야겠다. 이것들을 만든 일이 후회스럽구나.”" },
-        { verseNum: "8", verse: "○ 그러나 노아만은 주께 은혜를 입었다." },
-        { verseNum: "9", verse: "노아의 내력은 이러하다. 노아는 그 시대에 의롭고 흠이 없는 사람이었다. 그는 늘 하나님과 동행하는 삶을 살았다." },
+    const [bulletinInfo, setBulletinInfo] = useState({
+        date: "",
+        issue_number: 1,
+        title: "",
+        preacher: "",
+        prayer: "",
+        book: "",
+        chapter: 1,
+        start: 1,
+        end: 1
 
-    ]
+    })
+
+    useEffect(() => {
+        const load = async () => {
+            const result = await getLatestBulletin();
+
+            if (result.success && result.data) {
+                const latest = result.data;
+
+                setBulletinInfo({
+                    date: latest.date || "",
+                    issue_number: latest.issue_number,
+                    title: latest.title || "",
+                    preacher: latest.preacher || "",
+                    prayer: latest.prayer || "",
+                    book: latest.book || "",
+                    chapter: latest.chapter || 1,
+                    start: latest.start || 1,
+                    end: latest.end || 1
+                })
+            }
+        };
+        load();
+    }, []);
 
     return (
         <div className={style.container}>
@@ -33,10 +61,10 @@ export default function weekly() {
                     <div className={style.hero_content}>
                         <div className={style.hero_secondary}>
                             <span className={style.date}>2026년 2월 22일 </span>
-                            <span className={style.issue}>제26-7호</span>
+                            <span className={style.issue}>{`제 ${bulletinInfo.date.split("-")[0].slice(-2)}-${bulletinInfo.issue_number}호`}</span>
                         </div>
-                        <h1 className={style.hero_title}>이 세대를 살리는 한 사람</h1>
-                        <p className={style.hero_subtitle}>이충성 목사님</p>
+                        <h1 className={style.hero_title}>{bulletinInfo.title}</h1>
+                        <p className={style.hero_subtitle}>{bulletinInfo.preacher} 목사님</p>
                     </div>
                 </section>
                 <section className={style.check}>
@@ -76,18 +104,22 @@ export default function weekly() {
                         </div>
                         {activeIndex !== null && (
                             <div className={style.timeline_detail_card}>
-                                <h3>{timelineItems[activeIndex].title}</h3>
-                                <p>{timelineItems[activeIndex].desc}</p>
-                            </div>
-                        )}
-                        {activeIndex === 5 && (
-                            <div>
-                                {content.map((c) => (
-                                    <div key={c.verseNum} className={style.timeline_detail_card}>
-                                        <h3>{c.verseNum}절</h3>
-                                        <p>{c.verse}</p>
-                                    </div>
-                                ))}
+                                <h3>{timelineItems[activeIndex]}</h3>
+                                {[3, 5, 6, 7].includes(activeIndex) ? (
+                                    <>
+                                        { activeIndex === 3 && (
+                                            <p>{bulletinInfo.prayer} 청년</p>
+                                        )}
+                                        { activeIndex === 5 && (
+                                            <p>{bulletinInfo.book} {bulletinInfo.chapter}장 {bulletinInfo.start}-{bulletinInfo.end}절</p>
+                                        )}
+                                        { (activeIndex === 6 || activeIndex === 7) && (
+                                            <p>{bulletinInfo.preacher} 목사님</p>
+                                        )}
+                                    </>
+                                ) : (
+                                    <p>다함께</p>
+                                )}
                             </div>
                         )}
                     </div>

@@ -1,7 +1,7 @@
 import style from "./adminPage.module.css"
 import Link from "next/link"
 
-export default function AdminPage() {
+export default async function AdminPage() {
     return(
         <div className={style.container}>
             <main className={style.main}>
@@ -14,13 +14,23 @@ export default function AdminPage() {
                 <section className={style.menus}>
                     <h2 className={style.menus_title}>메뉴</h2>
                     <div className={style.menus_grid}>
-                        <Link href="adminPage/weeklyEditPage" className={style.menus_card_link}>
+                        <Link href="adminPage/bulletin" className={style.menus_card_link}>
                             <div className={style.menus_card}>
                                 <div className={style.menus_icon}>📖</div>
-                                <h3>주보 작성</h3>
+                                <h3>주보</h3>
                                 <p>주보 작성 페이지입니다</p>
                             </div>
                         </Link>
+                        <div className={style.menus_card}>
+                            <div className={style.menus_icon}>📢</div>
+                            <h3>광고</h3>
+                            <p>광고 작성 페이지입니다</p>
+                        </div>
+                        <div className={style.menus_card}>
+                            <div className={style.menus_icon}>📊</div>
+                            <h3>투표 관리</h3>
+                            <p>투표 관리 페이지</p>
+                        </div>
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>💰</div>
                             <h3>회계장부 작성</h3>

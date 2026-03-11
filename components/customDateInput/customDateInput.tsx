@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import style from "../app/adminPage/weeklyEditPage/weeklyEditPage.module.css"; // 기존 CSS 모듈 가져오기
+import style from "./customDateInput.module.css"; // 기존 CSS 모듈 가져오기
 
 interface CustomDateInputProps {
   value?: string;
