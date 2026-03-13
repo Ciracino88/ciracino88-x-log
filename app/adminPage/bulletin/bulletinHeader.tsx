@@ -1,6 +1,7 @@
 import style from "./bulletin.module.css"
 import Calendar from "@/components/calendar/page";
 import AutocompleteField from "@/components/autocompleteField/page";
+import { prayer } from "@/app/data/prayers";
 
 interface BulletinHeaderProps {
     date: string | null; 
@@ -43,8 +44,18 @@ export default function BulletinHeader({
                     <input
                         type="number"
                         className={style.input}
-                        value={issue_number ?? 1}
-                        onChange={(e) => onUpdateInfo("issue_number", Number(e.target.value))}
+                        value={issue_number === 0 ? "" : (issue_number ?? "")}
+                        onChange={(e) => {
+                            const val = e.target.value;
+
+                            // 값을 다 지우면, null 이나 "" 를 전달
+                            if (val === "") {
+                                onUpdateInfo("issue_number", null);
+                                return;
+                            }
+
+                            onUpdateInfo("issue_number", parseInt(val, 10));
+                        }}
                         placeholder="1"
                         max={53}
                         min={1}
@@ -73,15 +84,7 @@ export default function BulletinHeader({
                 <div className={style.field}>
                     <label>대표기도</label>
                     <AutocompleteField
-                        options={[
-                            "김진규",
-                            "유수민",
-                            "김예찬",
-                            "김예지",
-                            "이승호",
-                            "변형섭",
-                            "김민진"
-                        ]}
+                        options={prayer}
                         value={selected_prayer}
                         onChange={
                             (_, newValue) => onUpdateInfo("prayer", newValue)

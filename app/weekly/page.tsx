@@ -60,7 +60,7 @@ export default function weekly() {
                 <section className={style.hero}>
                     <div className={style.hero_content}>
                         <div className={style.hero_secondary}>
-                            <span className={style.date}>2026년 2월 22일 </span>
+                            <span className={style.date}>{`${bulletinInfo.date}`}</span>
                             <span className={style.issue}>{`제 ${bulletinInfo.date.split("-")[0].slice(-2)}-${bulletinInfo.issue_number}호`}</span>
                         </div>
                         <h1 className={style.hero_title}>{bulletinInfo.title}</h1>
@@ -77,8 +77,8 @@ export default function weekly() {
                         </div>
                         <div className={style.check_card}>
                             <div className={style.check_icon}>🙏</div>
-                            <h3>기도 시간</h3>
-                            <p>예배 전, 잠시 기도하는 시간을 가져봅시다</p>
+                            <h3>기도 제목</h3>
+                            <p>나누고 싶은 기도 제목이 있다면 적어보세요</p>
                         </div>
                         <div className={style.check_card}>
                             <div className={style.check_icon}>🎤</div>

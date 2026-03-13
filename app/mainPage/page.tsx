@@ -29,22 +29,22 @@ export default function MainPage() {
                     </div>
                 </section>
                 <section className={style.features}>
-                    <h2 className={style.section_title}>나누리, 무엇을 하나요?</h2>
+                    <h2 className={style.section_title}>나누리를 만나고 싶다면?</h2>
                     <div className={style.feature_grid}>
                         <div className={style.feature_card}>
-                            <div className={style.feature_icon}>🎯</div>
-                            <h3>삶을 통해 보여주는 나누리</h3>
-                            <p>나누리는 삶 속 행실을 통해 하나님을 증명합니다.</p>
+                            <div className={style.feature_icon}>🗺️</div>
+                            <h3>장소</h3>
+                            <p>의왕시 왕림길 47-4</p>
                         </div>
                         <div className={style.feature_card}>
-                            <div className={style.feature_icon}>⚡</div>
-                            <h3>실시간 업데이트</h3>
-                            <p>나누리는 실시간으로 성장하고, 새로운 것에 도전합니다.</p>
+                            <div className={style.feature_icon}>📅</div>
+                            <h3>시간</h3>
+                            <p>매주 일요일, 오후 1시 30분</p>
                         </div>
                         <div className={style.feature_card}>
-                            <div className={style.feature_icon}>✨</div>
-                            <h3>하나님이 중심되는 곳</h3>
-                            <p>나누리는 하나님의 뜻을 구하며 나아갑니다.</p>
+                            <div className={style.feature_icon}>🌟</div>
+                            <h3>인스타그램</h3>
+                            <p>@nanuri_gram</p>
                         </div>
                     </div>
                 </section>
@@ -60,14 +60,14 @@ export default function MainPage() {
                         <div className={style.step_item}>
                             <div className={style.step_number}>2</div>
                             <div></div>
-                            <h3>회원가입</h3>
-                            <p>무료로 계정을 생성하고 시작하세요</p>
+                            <h3>승인</h3>
+                            <p>목사님의 승인을 통해 나누리 맴버가 되세요</p>
                         </div>
                         <div className={style.step_item}>
                             <div className={style.step_number}>3</div>
                             <div></div>
-                            <h3>회원가입</h3>
-                            <p>무료로 계정을 생성하고 시작하세요</p>
+                            <h3>셀 배정</h3>
+                            <p>셀을 배정받고 나누리와 함께하세요</p>
                         </div>
                     </div>
                 </section>
@@ -82,8 +82,8 @@ export default function MainPage() {
                             </div>
                         </Link>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>🗺️</div>
-                            <h3>장소</h3>
+                            <div className={style.menus_icon}>📌</div>
+                            <h3>게시판</h3>
                             <p>Comming Soon</p>
                             {/* <p>나누리 위치가 궁금하다면?</p> */}
                         </div>
@@ -107,8 +107,8 @@ export default function MainPage() {
                             {/* <p>예배와 교제, 문화가 있는 나누리의 새로운 모임 공간</p> */}
                         </div>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>🌟</div>
-                            <h3>인스타그램</h3>
+                            <div className={style.menus_icon}>📊</div>
+                            <h3>투표</h3>
                             <p>Comming Soon</p>
                             {/* <p>나누리를 인스타에서 만나보세요</p> */}
                         </div>

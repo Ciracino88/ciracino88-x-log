@@ -1,0 +1,174 @@
+/* 조직도 섹션 */
+.org_section {
+  padding: 4rem 2rem;
+  background: #f8fafc;
+  text-align: center;
+  overflow-x: auto; /* 선이 잘리지 않도록 가로 스크롤 허용 */
+}
+
+.section_title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 4rem;
+  color: #1a202c;
+  position: relative;
+  display: inline-block;
+}
+
+.section_title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.org_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* 행과 행 사이의 물리적 거리 */
+  align-items: center;
+  position: relative;
+  padding: 2rem 0;
+}
+
+/* --- 행(Row) 공통 설정 --- */
+.org_row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem; /* 카드 사이 간격 */
+  position: relative;
+  width: 100%;
+}
+
+/* 하나의 행에 2명 이상일 때만 나타나며, 3번 행(사역자/부장)은 제외 */
+.org_row:has(.role_card:nth-child(2)):not(:nth-child(3))::before {
+  content: "";
+  position: absolute;
+  top: -2rem; /* 행 위쪽 중앙에 위치 */
+  height: 2px;
+  background-color: #cbd5e1;
+  z-index: 0;
+}
+
+/* 2명일 때 가로선 길이 조절 */
+.org_row:has(.role_card:nth-child(2)):not(:has(.role_card:nth-child(3))):not(:nth-child(3))::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: calc(50% - (6.08rem + 140px) / 2);
+  width: calc(6.22rem + 140px); /* 간격 + 카드너비 절반씩 */
+  transform: none;
+  height: 2px;
+  background-color: #cbd5e1;
+}
+
+/* 3명일 때 가로선 길이 조절 */
+.org_row:has(.role_card:nth-child(3))::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: calc(50% - (20.9rem + 140px) / 2);
+  width: calc(12.32rem + 280px); /* (간격*2) + (카드너비*2) */
+  transform: none;
+  height: 2px;
+  background-color: #cbd5e1;
+}
+
+/* --- 위층 부모로부터 내려와서 가로선 중앙에 꽂히는 수직선 --- */
+/* 1번(담임목사)과 3번(사역자층)을 제외한 모든 행의 중앙 상단에 배치 */
+.org_row:not(:first-child):not(:nth-child(3))::after {
+  content: "";
+  position: absolute;
+  top: -4rem; 
+  left: 50%;
+  width: 2px;
+  height: 2.1rem;
+  background-color: #cbd5e1;
+}
+
+/* 담임목사(L1)는 윗선 제거, 막내층(L6)은 아랫선 제거 */
+.org_row:first-child .role_card::before,
+.org_row:last-child .role_card::after {
+  display: none;
+}
+
+/* --- [특수] 3번 행: 담당사역자(중앙) + 부장(우측) 레이아웃 --- */
+
+.org_row:nth-child(3) {
+  justify-content: center;
+}
+
+/* 담당사역자(첫 번째 카드) - 중앙 고정 및 직계 연결 유지 */
+.org_row:nth-child(3) .role_card:first-child {
+  margin: 0 auto;
+}
+
+/* 부장(두 번째 카드) - 오른쪽으로 빼고 모든 선 제거 */
+.org_row:nth-child(3) .role_card:last-child {
+  position: absolute;
+  right: calc(50% - 22rem); /* 중앙에서 오른쪽으로 240px 이동 */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.org_row:nth-child(3) .role_card:last-child::before,
+.org_row:nth-child(3) .role_card:last-child::after {
+  display: none !important;
+}
+
+/* 3번 행은 행 자체의 연결선이 필요 없음 (사역자 카드가 선을 다 가지고 있음) */
+.org_row:nth-child(3)::before,
+.org_row:nth-child(3)::after {
+  display: none !important;
+}
+
+/* --- [특수] 5번 행: 부회장(좌측) + 총무(중앙) + 찬양팀 리더(우측) 레이아웃 --- */
+
+/* 총무(중앙) 빼고 나머지는 아래선이 없음 */
+.org_row:nth-child(5) .role_card:first-child::after,
+.org_row:nth-child(5) .role_card:last-child::after {
+  display: none !important;
+}
+
+/* --- 개별 카드 스타일 --- */
+.role_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  min-width: 140px;
+  z-index: 10;
+}
+
+/* 카드 위로 솟은 짧은 안테나 (가로선과 연결) */
+.role_card::before {
+  content: "";
+  position: absolute;
+  top: -2.1rem;
+  left: 50%;
+  width: 2px;
+  height: 2.1rem;
+  background-color: #cbd5e1;
+}
+
+/* 카드 아래로 내려가는 선 (다음 층으로 연결) */
+.role_card::after {
+  content: "";
+  position: absolute;
+  bottom: -2.1rem;
+  left: 50%;
+  width: 2px;
+  height: 2.1rem;
+  background-color: #cbd5e1;
+}
+
+.role_name { font-weight: 700; font-size: 1rem; color: #2d3748; }
+.member_name { font-size: 0.9rem; color: #718096; }

@@ -20,7 +20,13 @@ export default function Calendar({ value, onChange }: CalendarProps) {
       portalId="datepicker-portal"
       onChange={(date: Date | null) => {
         if (date) {
-            const localDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            const localDate = new Date(
+              date.getFullYear(), 
+              date.getMonth(), 
+              date.getDate(),
+              13, 30, 0
+            );
+            console.log(localDate);
             onChange(localDate);
         } else {
             onChange(null);

@@ -37,9 +37,9 @@ export default async function AdminPage() {
                             <p>comming soon</p>
                         </div>
                         <div className={style.menus_card}>
-                            <div className={style.menus_icon}>⚖️</div>
-                            <h3>회칙 관리</h3>
-                            <p>나누리 회칙을 관리하는 페이지입니다</p>
+                            <div className={style.menus_icon}>✍️</div>
+                            <h3>문서 관리</h3>
+                            <p>나누리 회의 내용 모음</p>
                         </div>
                         <div className={style.menus_card}>
                             <div className={style.menus_icon}>✔️</div>
