@@ -1,5 +1,8 @@
 import style from "./mainPage.module.css"
 import Link from "next/link"
+import Card from "@/components/card/card"
+import { mainPageFeatures } from "../data/mainPageMenus"
+import { mainPageMenus } from "../data/mainPageMenus"
 
 export default function MainPage() {
     return (
@@ -31,21 +34,14 @@ export default function MainPage() {
                 <section className={style.features}>
                     <h2 className={style.section_title}>나누리를 만나고 싶다면?</h2>
                     <div className={style.feature_grid}>
-                        <div className={style.feature_card}>
-                            <div className={style.feature_icon}>🗺️</div>
-                            <h3>장소</h3>
-                            <p>의왕시 왕림길 47-4</p>
-                        </div>
-                        <div className={style.feature_card}>
-                            <div className={style.feature_icon}>📅</div>
-                            <h3>시간</h3>
-                            <p>매주 일요일, 오후 1시 30분</p>
-                        </div>
-                        <div className={style.feature_card}>
-                            <div className={style.feature_icon}>🌟</div>
-                            <h3>인스타그램</h3>
-                            <p>@nanuri_gram</p>
-                        </div>
+                        {mainPageFeatures.map((feature, idx) => (
+                            <Card
+                                key={idx}
+                                emoji={feature.emoji}
+                                title={feature.title}
+                                desc={feature.desc}
+                            />
+                        ))}
                     </div>
                 </section>
                 <section className={style.steps}>
@@ -74,44 +70,15 @@ export default function MainPage() {
                 <section className={style.menus}>
                     <h2 className={style.section_title}>나누리 살펴보기</h2>
                     <div className={style.menus_grid}>
-                        <Link href="/executives" className={style.menus_card_link}>
-                            <div className={style.menus_card}>
-                                <div className={style.menus_icon}>🫡</div>
-                                <h3>임원진</h3>
-                                <p>주님의 사역에 헌신하는 동역자들</p>
-                            </div>
-                        </Link>
-                        <div className={style.menus_card}>
-                            <div className={style.menus_icon}>📌</div>
-                            <h3>게시판</h3>
-                            <p>Comming Soon</p>
-                            {/* <p>나누리 위치가 궁금하다면?</p> */}
-                        </div>
-                        <div className={style.menus_card}>
-                            <div className={style.menus_icon}>📆</div>
-                            <h3>캘린더</h3>
-                            <p>Comming Soon</p>
-                            {/* <p>나누리 일정을 한 눈에 살펴보세요</p> */}
-                        </div>
-                        <Link href="/weekly" className={style.menus_card_link}>
-                            <div className={style.menus_card}>
-                                <div className={style.menus_icon}>🗞️</div>
-                                <h3>주보</h3>
-                                <p>이번 주는 어떤 말씀이 기다리고 있을까요?</p>
-                            </div>
-                        </Link>
-                        <div className={style.menus_card}>
-                            <div className={style.menus_icon}>🎲</div>
-                            <h3>AWESOME PLACE</h3>
-                            <p>Comming Soon</p>
-                            {/* <p>예배와 교제, 문화가 있는 나누리의 새로운 모임 공간</p> */}
-                        </div>
-                        <div className={style.menus_card}>
-                            <div className={style.menus_icon}>📊</div>
-                            <h3>투표</h3>
-                            <p>Comming Soon</p>
-                            {/* <p>나누리를 인스타에서 만나보세요</p> */}
-                        </div>
+                        {mainPageMenus.map((menu, idx) => (
+                            <Link className={style.menus_card_link} href={menu.link} key={idx}>
+                                <Card
+                                    emoji={menu.emoji}
+                                    title={menu.title}
+                                    desc={menu.desc}
+                                />
+                            </Link>
+                        ))}
                     </div>
                 </section>
                 <section className={style.log_section}>
