@@ -238,9 +238,7 @@
   margin: 0 auto;
 }
 
-/* 개별 카드 */
-
-.menus_card_link {
+.link {
   display: block;               /* Link가 block 요소처럼 동작 */
   text-decoration: none;        /* 밑줄 제거 */
   color: inherit;               /* 텍스트 색상 유지 */

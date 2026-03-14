@@ -1,0 +1,32 @@
+/* 전체 컨테이너 */
+.container {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* 메인 영역 */
+.main {
+  width: 100%;
+}
+
+.menus {
+  padding: 5rem 2rem;
+  background: #ffffff;
+  text-align: center;
+}
+
+.menus_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.link {
+  display: block;               /* Link가 block 요소처럼 동작 */
+  text-decoration: none;        /* 밑줄 제거 */
+  color: inherit;               /* 텍스트 색상 유지 */
+  transition: all 0.3s ease;
+  border-radius: 16px;
+}

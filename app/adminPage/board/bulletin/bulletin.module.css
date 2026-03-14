@@ -7,11 +7,8 @@
 .main {
   width: 100%;
   max-width: 480px;
-  /* 모바일 최대 너비 제한 */
   margin: 0 auto;
-  /* ← 핵심 : 중앙 정렬 */
   padding: 0 8px;
-  /* 아주 좁은 기기 대응 */
   box-sizing: border-box;
 }
 
@@ -26,6 +23,7 @@
   margin: 0 0 16px 4px;
 }
 
+/* 입력 행 모음 */
 .card {
   background: white;
   border-radius: 18px;
@@ -33,11 +31,11 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
   border: 1px solid #e5e5ea;
   margin: 0 auto;
-  /* 혹시 모를 추가 안전장치 */
   width: 100%;
   max-width: 420px;
 }
 
+/* 입력 행 */
 .field {
   display: flex;
   align-items: center;
@@ -49,9 +47,11 @@
   transition: background 0.25s ease, padding 0.25s ease;
 }
 
+/* 마지막 행은 밑줄 필요 x */
 .field:last-child {
   border-bottom: none;
 }
+
 
 .field label {
   width: 84px;
@@ -186,93 +186,11 @@
   word-break: keep-all;
 }
 
-.adSection {
+.btn_fullWidth {
+  margin-top: 32px;
   width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
 }
 
-.emptyAd {
-  background: white;
-  border-radius: 18px;
-  border: 1px dashed #c7c7cc;
-  padding: 40px 24px;
-  text-align: center;
-  color: #8e8e93;
-  font-size: 15px;
-}
-
-.adCard {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  /* 블러 효과 */
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 24px;
-  /* 아주 둥글게 */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.6);
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-
-.adHeader {
-  padding: 20px 24px 10px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #007AFF;
-  letter-spacing: -0.2px;
-}
-
-.adContent {
-  padding: 0 24px 24px;
-  font-size: 15.5px;
-  line-height: 1.48;
-  color: #000;
-}
-
-.addButton {
-  margin-top: 16px;
-  background: #007aff;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.addButton:hover {
-  background: #0062cc;
-}
-
-.submit_btn {
-  display: block;
-  width: 100%;
-  max-width: 26.5rem;               /* ← 여기서 최대 너비 제한 → 튀어나옴 해결 */
-  margin: 24px auto 0;            /* 위쪽 여백 넉넉하게 */
-  padding: 14px 28px;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  background: linear-gradient(135deg, #007aff, #0062cc);  /* 살짝 그라데이션 */
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);  /* 은은한 그림자 */
-}
-
-.submit_btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 122, 255, 0.35);
-  background: linear-gradient(135deg, #008aff, #0070e0);
-}
-
-.submit_btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+.btn_fullWidth button {
+  width: 100% !important;
 }

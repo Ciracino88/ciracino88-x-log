@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/client"
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import style from './navbar.module.css'
+import Button from "../button/page"
 
 export default function Navbar() {
   const [user, setUser] = useState<User | null>(null)
@@ -18,7 +19,7 @@ export default function Navbar() {
     const loadUserAndProfile = async () => {
       // 1. 로그인 유저 정보 가져오기
       const { data: { user }, error: userError } = await supabase.auth.getUser();
-      
+
       if (userError || !user) {
         setLoading(false)
         return
@@ -34,7 +35,7 @@ export default function Navbar() {
         .single()
 
       console.log(data)
-      
+
       setProfile(data as Profile | null)
 
       setLoading(false)
@@ -85,21 +86,27 @@ export default function Navbar() {
                   {displayName}
                 </Link>
                 {/* 관리자일 경우 관리자 페이지 버튼 보여짐 */}
-                {isAdmin&& (
-                  <Link href="/adminPage" className={`${style.navbar_btn} ${style.admin_btn}`}>
-                    관리자 페이지
+                {isAdmin && (
+                  <Link href="/adminPage" style={{ textDecoration: "none" }}>
+                    <Button
+                      variant="outline"
+                    >관리자 페이지</Button>
                   </Link>
                 )}
-                <button
+                <Button
+                  variant="danger"
                   onClick={handleLogout}
-                  className={`${style.navbar_btn} ${style.logout_btn}`}
                 >
                   로그아웃
-                </button>
+                </Button>
               </div>
             ) : (
-              <Link href="/login" className={`${style.navbar_btn} ${style.login_btn}`}>
-                로그인 / 시작하기
+              <Link href="/login" style={{ textDecoration: "none" }}>
+                <Button
+                  variant="primary"
+                >
+                  로그인 / 시작하기
+                </Button>
               </Link>
             )}
           </div>

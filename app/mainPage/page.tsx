@@ -71,7 +71,7 @@ export default function MainPage() {
                     <h2 className={style.section_title}>나누리 살펴보기</h2>
                     <div className={style.menus_grid}>
                         {mainPageMenus.map((menu, idx) => (
-                            <Link className={style.menus_card_link} href={menu.link} key={idx}>
+                            <Link className={style.link} href={menu.link} key={idx}>
                                 <Card
                                     emoji={menu.emoji}
                                     title={menu.title}

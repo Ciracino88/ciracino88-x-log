@@ -6,6 +6,7 @@ import { BulletinSchema } from "@/app/types/bulletinSchema";
 import { saveBulletinData } from "./action";
 import BulletinHeader from "./bulletinHeader"
 import BulletinBody from "./bulletinBody"
+import Button from "@/components/button/page";
 
 
 export default function Bulletin() {
@@ -17,11 +18,11 @@ export default function Bulletin() {
         preacher: string | null;
         prayer: string | null;
     }>({
-        date: "",
+        date: null,
         issue_number: 1,
         title: "",
-        preacher: "",
-        prayer: ""
+        preacher: null,
+        prayer: null
     });
 
     // 말씀 본문 상태 묶기
@@ -39,15 +40,13 @@ export default function Bulletin() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [toggleResults, setToggleResults] = useState(false);
-
     // 업데이트 함수
     const updateInfo = (key: keyof typeof bulletinInfo, value: string | number | null) => {
-        setBulletinInfo(prev => ({ ...prev, [key]: value}));
+        setBulletinInfo(prev => ({ ...prev, [key]: value }));
     };
 
     const updateScripture = (key: keyof typeof scripture, value: any) => {
-        setScripture(prev => ({ ...prev, [key]: value}));
+        setScripture(prev => ({ ...prev, [key]: value }));
     };
 
     // 옵셔널 값들의 유효성 검사
@@ -95,13 +94,14 @@ export default function Bulletin() {
                     end={scripture.end}
                     onUpdateScripture={updateScripture}
                 />
-                <button
-                    className={style.submit_btn}
-                    onClick={handleSave}
-                    disabled={isSubmitting}
-                >
-                    {isSubmitting ? "저장 중..." : "저장"}
-                </button>
+                <div className={style.btn_fullWidth}>
+                    <Button
+                        variant="primary"
+                        onClick={handleSave}
+                    >
+                        {isSubmitting ? "저장 중..." : "저장"}
+                    </Button>
+                </div>
             </main>
         </div>
     )

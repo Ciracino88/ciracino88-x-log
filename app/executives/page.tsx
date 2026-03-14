@@ -9,6 +9,7 @@ import { principleData } from "../data/principles"
 import { useState } from "react"
 import OrgChart from "./organization/orgChart"
 import { orgData } from "../data/executiveOrganization"
+import Hero from "@/components/hero/page"
 
 export default function Executives() {
     const [selectedCategory, setSelectedCategory] = useState<PrincipleCategory | null>(null);
@@ -17,16 +18,10 @@ export default function Executives() {
     return (
         <div className={style.container}>
             <main className={style.main}>
-                <section className={style.hero}>
-                    <div className={style.hero_content}>
-                        <h1 className={style.hero_title}>
-                            나누리 청년부 임원진
-                        </h1>
-                        <p className={style.hero_subtitle}>
-                            직책이 아니라 섬김으로 부름받은 이들
-                        </p>
-                    </div>
-                </section>
+                <Hero
+                    title="나누리 청년부 임원진"
+                    desc="직책이 아니라 섬김으로 부름받은 이들"
+                />
 
                 {/* 임원 조직도 */}
                 <OrgChart/>

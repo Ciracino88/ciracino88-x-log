@@ -3,6 +3,7 @@
 import { setPassword } from '@/app/actions/auth'
 import { useState, useTransition } from 'react'
 import style from "./mypage.module.css"
+import Button from '@/components/button/page'
 
 export default function SetPasswordForm() {
   const [message, setMessage] = useState('')
@@ -10,6 +11,14 @@ export default function SetPasswordForm() {
   const [isPending, startTransition] = useTransition()
 
   async function handleSubmit(formData: FormData) {
+    const password = formData.get("password");
+    const confirm = formData.get("confirm");
+
+    if (password !== confirm) {
+      setError("비밀번호가 일치하지 않습니다.");
+      return
+    }
+
     startTransition(async () => {
       const result = await setPassword(formData)
 
@@ -17,7 +26,7 @@ export default function SetPasswordForm() {
         setError(result.error)
         setMessage('')
       } else if (result?.success) {
-        setMessage(result.message || '패스워드가 설정되었습니다!')
+        setMessage('패스워드가 변경되었습니다!')
         setError('')
       }
     })
@@ -44,13 +53,25 @@ export default function SetPasswordForm() {
                         className={style.input_field}
                     />
                 </div>
-                <button
-                    type='submit'
-                    disabled={isPending}
-                    className={`${style.submit_btn} ${isPending ? "loading" : ""}`}
+                <div className={style.input_group}>
+                    <label htmlFor='password' className={style.input_label}>새 패스워드 확인</label>
+                    <input
+                        id="confirm"
+                        name="confirm"
+                        type='password'
+                        required
+                        placeholder='한 번 더 입력해주세요'
+                        disabled={isPending}
+                        className={style.input_field}
+                    />
+                </div>
+                <Button
+                  type='submit'
+                  variant='primary'
+                  shape='square'
                 >
-                    {isPending ? "설정 중..." : "저장"}
-                </button>
+                  {isPending ? "설정 중..." : "저장"}
+                </Button>
                 { error && <p className={style.error_text}>{error}</p>}
                 { message && <p className={style.message}>{message}</p>}
             </form>

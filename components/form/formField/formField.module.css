@@ -1,0 +1,48 @@
+/* formField.module.css */
+.field {
+  display: flex;
+  flex-direction: column; /* 모바일에서는 라벨을 위로, 인풋을 아래로 두는 게 더 시원합니다 */
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e5ea;
+}
+
+.label {
+  font-size: 14px;
+  color: #8e8e93;
+  margin-bottom: 8px;
+}
+
+.container {
+  width: 100%;
+}
+
+/* 모든 입력 요소의 폰트와 스타일 통일 */
+.input {
+  width: 100%;
+  font-size: 17px;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 0; /* 위아래 여백을 줘서 텍스트가 라벨과 붙지 않게 */
+  font-size: 17px;
+  line-height: 1.6; /* 행간을 넓혀서 읽기 편하게 */
+  border: none;
+  outline: none;
+  resize: none; /* 사용자가 모서리 잡고 늘리는 거 방지 */
+  background: transparent;
+  color: #000;
+}
+
+.textarea::placeholder {
+  color: #c7c7cc; /* iOS 옅은 회색 느낌 */
+}
+
+/* MUI Autocomplete 커스텀 */
+.autocomplete :global(.MuiInputBase-root) {
+  padding: 0 !important;
+}

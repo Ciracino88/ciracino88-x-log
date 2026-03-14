@@ -76,32 +76,6 @@
   cursor: not-allowed;
 }
 
-.submit_btn {
-  padding: 14px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: white;
-  background: #3b82f6;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.submit_btn:hover:not(:disabled) {
-  background: #2563eb;
-  transform: translateY(-1px);
-}
-
-.submit_btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.submit_btn.loading {
-  background: #93c5fd;
-  cursor: wait;
-}
-
 .error_text {
   color: #ef4444;
   font-size: 0.9rem;

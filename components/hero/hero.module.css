@@ -1,0 +1,23 @@
+.hero {
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.desc {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+}

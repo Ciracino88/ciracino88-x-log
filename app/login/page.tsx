@@ -3,7 +3,7 @@
 import style from "./login.module.css"
 import { loginWithEmail, signInWithGoogle, signInWithKakao } from "../actions/auth";
 import { useState, useTransition } from "react";
-import CustomButton from "@/components/customButton/customButton";
+import Button from "@/components/button/page";
 
 export default function Login() {
     const [isPending, startTransition] = useTransition()
@@ -72,17 +72,29 @@ export default function Login() {
                     )}
                     
                     <div className={style.form_group}>
-                        <CustomButton
+                        <Button
                             type="submit"
-                            disabled={isPending}
+                            variant="primary"
+                            shape="square"
+                            onClick={() => handleEmailLogin}
                         >
                             {isPending ? "로그인 중..." : "로그인"}
-                        </CustomButton>
+                        </Button>
                     </div>
                 </form>
                 <div className={style.signup_btn_container}>
-                    <button className={`${style.signup_btn} ${style.google}`} onClick={handleGoogleLogin}>구글 계정으로 시작하기</button>
-                    <button className={`${style.signup_btn} ${style.kakao}`} onClick={handleKakaoLogin}>카카오 계정으로 시작하기</button>
+                    <Button
+                        variant="google"
+                        onClick={() => handleGoogleLogin}
+                    >
+                        구글 계정으로 시작하기
+                    </Button>
+                    <Button
+                        variant="kakao"
+                        onClick={() => handleKakaoLogin}
+                    >
+                        카카오 계정으로 시작하기
+                    </Button>
                 </div>
             </div>
         </div>

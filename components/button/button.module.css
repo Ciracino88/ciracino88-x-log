@@ -1,0 +1,79 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* 모양 (Shape) */
+.capsule { border-radius: 999px; } /* 대부분의 버튼 */
+.square { border-radius: 8px; }    /* 주보 저장, 패스워드 설정용 */
+
+/* 크기 (Size) */
+.s { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+.m { padding: 0.75rem 1.5rem; font-size: 1rem; }
+.l { padding: 1rem 2rem; font-size: 1.1rem; }
+
+/* 색상 및 스타일 (Variant) */
+.primary { 
+  background-color: #4285F4; 
+  color: white; 
+}
+
+.secondary { 
+  background-color: #edf2f7; 
+  color: #4a5568; 
+}
+
+.outline { 
+  background: transparent; 
+  border: 1px solid #e2e8f0; 
+  color: #4a5568; 
+}
+
+.danger {
+  background-color: #e53e3e; /* 삭제/위험 알림용 빨강 */
+  color: white;
+}
+
+/* 호버 적용 */
+.primary:hover {
+  background-color: #2b6cb0; /* 파란색을 살짝 더 진하게 */
+  transform: translateY(-1px); /* 살짝 위로 떠오르는 느낌 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.secondary:hover {
+  background-color: #e2e8f0;
+}
+
+.outline:hover {
+  background-color: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.danger:hover {
+  background-color: #c53030; /* 더 진한 빨강 */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(229, 62, 62, 0.2);
+}
+
+/* 소셜 로그인 특화 */
+.google { background-color: #ffffff; color: #000; border: 1px solid #ddd; }
+.kakao { background-color: #fee500; color: #3c1e1e; }
+
+/* 소셜 버튼 호버 (밝기 조절로 처리) */
+.google:hover, .kakao:hover {
+  filter: brightness(0.95); /* 전체적으로 살짝 어둡게 */
+}
+
+
+/* 모든 버튼 공통 활성화(Click) 효과 */
+.btn:active {
+  transform: translateY(0); /* 눌렀을 때 다시 내려가는 느낌 */
+  filter: brightness(0.9);
+}
